@@ -150,8 +150,9 @@ const unsigned char OledFontTable[][FONT_SIZE]={
  * Return value : none
  * description  :This function is used to initialize the OLED in the normal mode.
  After initializing the OLED, It clears the OLED and sets the cursor to first line first position. .
+ Edit : Uncomment the 128x32 to use with your 128x32 Oled display
  **************************************************************************************************/
-void OLED_Init(void)
+void OLED_Init(void) //128x64
 {
     i2c_init();
     
@@ -184,8 +185,51 @@ void OLED_Init(void)
     OLED_Clear();  /* Clear the complete LCD during init */
 }
 
+/**************************************************************
+void OLED_Init(void) //128x32
+{
+	i2c_init();
+	oledSendCommand(0xAE);
 
+	oledSendCommand(0xD5);
+	oledSendCommand(0x80);
 
+	oledSendCommand(0xA8);
+	oledSendCommand(31);
+
+	oledSendCommand(0xD3);
+	oledSendCommand(0x0);
+
+	oledSendCommand(0x0);
+
+	oledSendCommand(0x8D);
+	oledSendCommand(0x14);
+
+	oledSendCommand(0xDA);
+	oledSendCommand(0x02);
+
+	oledSendCommand(0x81);
+	oledSendCommand(0x7F);
+
+	oledSendCommand(0xD9);
+	oledSendCommand(0x22);
+
+	oledSendCommand(0xDB);
+	oledSendCommand(0x40);
+
+	oledSendCommand(0xA4);
+
+	oledSendCommand(0x20);
+	oledSendCommand(0x00);
+
+	oledSendCommand(0xA6);
+
+	oledSendCommand(0xAF);
+	
+	OLED_Clear();
+}
+*/
+/****************************************************************************************************/
 
 
 /***************************************************************************************************
